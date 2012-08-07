@@ -1,2 +1,1 @@
-
-default[:users] = ["root", "yamaguchi"]
+default[:screen][:users] = [""]

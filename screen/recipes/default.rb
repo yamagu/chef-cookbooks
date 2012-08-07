@@ -21,16 +21,17 @@ package "screen" do
 end
 
 require 'etc'
-node[:users].each do |user|
-  pw = Etc.getpwnam(user)
-  p pw
-  rcfile = "#{pw.dir}/.screenrc"
+node[:screen][:users].each do |user|
+  if user.length > 0
+    pw = Etc.getpwnam(user)
+    rcfile = "#{pw.dir}/.screenrc"
 
-  template rcfile do
-    source "screenrc.erb"
-    owner pw.name
-    group Etc.getgrgid(pw.gid).name
-    mode "0644"
+    template rcfile do
+      source "screenrc.erb"
+      owner pw.name
+      group Etc.getgrgid(pw.gid).name
+      mode "0644"
+    end
   end
 end
 
