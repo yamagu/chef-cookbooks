@@ -1,0 +1,2 @@
+
+default[:users] = ["root", "yamaguchi"]
