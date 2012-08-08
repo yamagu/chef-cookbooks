@@ -17,14 +17,14 @@
 # limitations under the License.
 #
 
-template "/etc/sysconfig/i18n" do
+file "/etc/sysconfig/i18n" do
   owner "root"
   group "root"
   mode "0644"
-  source "i18n.erb"
+  content 'LANG="ja_JP.UTF-8"'
 end
 
-
-execute 'timezone' do
-  command 'cp /usr/share/zoneinfo/Japan /etc/localtime'
+link "/etc/localtime" do
+  to "/usr/share/zoneinfo/Asia/Tokyo"
+  link_type :symbolic
 end
