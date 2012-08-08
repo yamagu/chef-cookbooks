@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: screen
+# Cookbook Name:: vim
 # Recipe:: default
 #
 # Copyright 2012, Example Com
@@ -16,17 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-package "screen" do
-    action :install
+package "vim-enhanced" do
+  action :install
 end
 
 require 'etc'
-node[:screen][:users].each do |user|
+node[:vim][:users].each do |user|
   if user.length > 0
     pw = Etc.getpwnam(user)
 
-    template "#{pw.dir}/.screenrc" do
-      source "screenrc.erb"
+    template "#{pw.dir}/.vimrc" do
+      source "vimrc.erb"
       owner pw.name
       group pw.gid
       mode "0644"
