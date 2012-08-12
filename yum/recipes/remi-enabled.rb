@@ -9,16 +9,22 @@ remote_file "#{Chef::Config[:file_cache_path]}/remi-release-#{major}.rpm" do
   notifies :install, "rpm_package[remi]", :immediately
 end
 
+
 rpm_package "remi" do
   source "#{Chef::Config[:file_cache_path]}/remi-release-#{major}.rpm"
   only_if {::File.exists?("#{Chef::Config[:file_cache_path]}/remi-release-#{major}.rpm")}
   action :nothing
-  notifies :run, "execute[update_releasever]", :immediately
 end
 
-execute "update_releasever" do
-  command "perl -p -i.bak -e 's/\\$releasever/#{major}/' /etc/yum.repos.d/remi.repo"
-  action :nothing
+template "/etc/yum.repos.d/remi.repo" do
+  source "remi.repo.erb"
+  mode "644"
+  owner "root"
+  group "root"
+  variables({
+    :releasever => major,
+    :enabled => 1
+  })
 end
 
 file "remi-cleanup" do
