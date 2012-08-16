@@ -46,7 +46,7 @@ ServerTokens Prod
 TraceEnable Off
 
 <Directory ~ "/\..+/">
-    Order deny, allow
+    Order allow, deny
     Deny from all
 </Directory>
 
