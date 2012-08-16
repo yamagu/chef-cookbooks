@@ -11,7 +11,7 @@ package "httpd"
 
 template "/etc/httpd/conf/httpd.conf" do
   source "httpd.conf.erb"
-  mode "644"
+  mode 0644
   owner "root"
   group "root"
 end
