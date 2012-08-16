@@ -23,6 +23,7 @@ template "/etc/yum.repos.d/remi.repo" do
   group "root"
   variables({
     :releasever => major,
+    :priority => 1,
     :enabled => 1
   })
 end

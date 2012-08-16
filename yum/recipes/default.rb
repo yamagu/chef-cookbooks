@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 package "yum-plugin-fastestmirror"
-# package "yum-priorities"
+package "yum-plugin-priorities"
 
 
 case node[:platform]
