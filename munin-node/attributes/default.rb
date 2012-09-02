@@ -1,2 +1,2 @@
-default['munim-node']['mysql']['mysqlopts'] = "-u**** -p****"
-default['munim-node']['mysql']['mysqladmin'] = "/usr/bin/mysqladmin"
+default['munin-node']['mysql']['mysqlopts'] = "-u**** -p****"
+default['munin-node']['mysql']['mysqladmin'] = "/usr/bin/mysqladmin"
