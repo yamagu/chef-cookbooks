@@ -1,8 +1,7 @@
 
 include_recipe "yum::epel"
 
-major = node['platform_version'].to_i
-
+major = node['yum']['releasever'].to_i
 remote_file "#{Chef::Config[:file_cache_path]}/remi-release-#{major}.rpm" do
   source "http://rpms.famillecollet.com/enterprise/remi-release-#{major}.rpm"
   not_if "rpm -qa | grep remi-release"

@@ -17,7 +17,23 @@ mkdir /var/chef-solo &&
 cat > /etc/chef/solo.rb <<EOF
 file_cache_path '/var/chef-solo'
 cookbook_path   '/etc/chef/cookbooks'
-json_attribs    '/root/node.json'
-log_location    '/var/log/chef/solo.log'
+json_attribs    '/etc/chef/node.json'
 EOF
 
+
+cat > /etc/chef/node.json <<EOS
+{
+  "screen": {
+    "users": [ "root", "ec2-user" ]
+  },
+  "vim": {
+    "users": [ "root", "ec2-user" ]
+  },
+  "run_list": [ "recipe[locale]"
+  , "recipe[screen]"
+  , "recipe[ntp]"
+  , "recipe[vim]" ]
+}
+EOS
+
+# chef-solo -c /etc/chef/solo.rb 

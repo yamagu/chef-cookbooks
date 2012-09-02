@@ -10,10 +10,15 @@
 include_recipe "yum::remi-enabled"
 
 %w{ mysql-server mysql mysql-devel }.each do |name|
-  yum_package name do
-    version node['mysql-server']['version']
-    action :install
-    options "--enablerepo=remi"
+  cmd = "yum install -y --enablerepo=remi #{name}"
+
+  if node['mysql-server']['version'].length > 0
+    cmd = "#{cmd}-#{node['mysql-server']['version']}"
+  end
+
+  bash "install_mysql" do
+    user "root"
+    code cmd
   end
 end
 

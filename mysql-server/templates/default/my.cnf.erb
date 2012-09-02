@@ -5,8 +5,8 @@
 # instructions in http://fedoraproject.org/wiki/Systemd
 user=mysql
 
-datadir=/var/lib/mysql
-socket=/var/lib/mysql/mysql.sock
+datadir=<%= node['mysql-server']['datadir'] %>
+socket=<%= node['mysql-server']['socket'] %>
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0

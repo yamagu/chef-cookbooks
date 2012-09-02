@@ -8,13 +8,24 @@
 #
 include_recipe "yum::remi-enabled"
 
-node['php']['packages'].each do |name|
-  yum_package name do
-    version node['php']['version']
-    action :install
-    # flush_cache [:before, :after]
-    options "--enablerepo=remi"
+packages = node['php']['packages'].map do |name|
+  if node['php']['version'].length > 0
+    "#{name}-#{node['php']['version']}"
+  else
+    name
   end
+end
+
+bash "install_php" do
+  user "root"
+  code "yum install -y --enablerepo=remi #{packages.join(' ')}"
+end
+
+template "/etc/php.ini" do
+  source "php.ini.erb"
+  mode "644"
+  owner "root"
+  group "root"
 end
 
 include_recipe "yum::remi-disabled"

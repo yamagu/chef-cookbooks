@@ -1,4 +1,4 @@
-major = node['platform_version'].to_i
+major = node['yum']['releasever'].to_i
 
 template "/etc/yum.repos.d/remi.repo" do
   source "remi.repo.erb"
@@ -7,7 +7,7 @@ template "/etc/yum.repos.d/remi.repo" do
   group "root"
   variables({
     :releasever => major,
-    :priority => 80,
+    :priority => 1,
     :enabled => 0
   })
 end
