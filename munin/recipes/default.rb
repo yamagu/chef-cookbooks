@@ -16,3 +16,11 @@ template "/etc/munin/munin.conf" do
   owner "root"
   group "root"
 end
+
+template "/etc/httpd/conf.d/munin.conf" do
+  source "munin.httpd.conf.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[httpd]"
+end

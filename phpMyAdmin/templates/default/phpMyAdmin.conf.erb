@@ -1,0 +1,11 @@
+
+Alias /phpMyAdmin    /usr/share/phpMyAdmin
+
+<Directory /usr/share/phpMyAdmin/>
+    DirectoryIndex index.php
+    Order deny,allow
+    Deny from all
+    <% node['phpMyAdmin']['allow_hosts'].each do |host| -%>
+    Allow from <%= host %>
+    <% end -%>
+</Directory>

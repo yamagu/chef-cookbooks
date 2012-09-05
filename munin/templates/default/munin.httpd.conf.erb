@@ -1,0 +1,11 @@
+
+Alias /munin    /var/www/html/munin
+
+<Directory /var/www/html/munin/>
+    Order deny,allow
+    Deny from all
+    <% node['munin']['allow_hosts'].each do |host| -%>
+    Allow from <%= host %>
+    <% end -%>
+</Directory>
+

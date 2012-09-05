@@ -29,6 +29,7 @@ template "/etc/my.cnf" do
   mode "644"
   owner "root"
   group "root"
+  notifies :restart, "service[mysqld]"
 end
 
 service "mysqld" do

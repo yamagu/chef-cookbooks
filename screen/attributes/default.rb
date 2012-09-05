@@ -1,1 +1,1 @@
-default[:screen][:users] = [""]
+default[:screen][:users] = []

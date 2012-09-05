@@ -1,5 +1,4 @@
 default['mysql-server']['version'] = ""
-# default['mysql-server']['version'] = "5.5.27-1.el6.remi"
 
 default['mysql-server']['datadir'] = "/var/lib/mysql"
 default['mysql-server']['socket'] = "/var/lib/mysql/mysql.sock"

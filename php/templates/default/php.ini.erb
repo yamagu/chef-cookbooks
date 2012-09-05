@@ -22,7 +22,7 @@
 ; The syntax of the file is extremely simple.  Whitespace and Lines
 ; beginning with a semicolon are silently ignored (as you probably guessed).
 ; Section headers (e.g. [Foo]) are also silently ignored, even though
-; they might mean something in the future. 
+; they might mean something in the future.
 
 ; Directives following the section heading [PATH=/www/mysite] only
 ; apply to PHP files in the /www/mysite directory.  Directives
@@ -441,11 +441,11 @@ expose_php = On
 
 ; Maximum execution time of each script, in seconds
 ; http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time
-max_execution_time = 30     
+max_execution_time = 30
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
-; long running scripts. 
+; long running scripts.
 ; Default Value: -1 (Unlimited)
 ; Development Value: 60 (60 seconds)
 ; Production Value: 60 (60 seconds)
@@ -461,7 +461,7 @@ max_input_time = 60
 
 ; Maximum amount of memory a script may consume (128MB)
 ; http://www.php.net/manual/en/ini.core.php#ini.memory-limit
-memory_limit = 128M
+memory_limit = <%= node['php']['memory_limit'] %>
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -517,7 +517,7 @@ memory_limit = 128M
 ; Development Value: E_ALL | E_STRICT
 ; Production Value: E_ALL & ~E_DEPRECATED
 ; http://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting
-error_reporting = E_ALL & ~E_DEPRECATED
+error_reporting = <% node['php']['error_reporting'] %>
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -527,14 +527,14 @@ error_reporting = E_ALL & ~E_DEPRECATED
 ; It's recommended that errors be logged on production servers rather than
 ; having the errors sent to STDOUT.
 ; Possible Values:
-;   Off = Do not display any errors 
-;   stderr = Display errors to STDERR (affects only CGI/CLI binaries!)   
+;   Off = Do not display any errors
+;   stderr = Display errors to STDERR (affects only CGI/CLI binaries!)
 ;   On or stdout = Display errors to STDOUT
 ; Default Value: On
 ; Development Value: On
 ; Production Value: Off
 ; http://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors
-display_errors = Off
+display_errors = <% node['php']['display_errors'] %>
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those
@@ -679,7 +679,7 @@ variables_order = "GPCS"
 ; be registered into the super global array REQUEST. If so, it also determines
 ; the order in which that data is registered. The values for this directive are
 ; specified in the same manner as the variables_order directive, EXCEPT one.
-; Leaving this value empty will cause PHP to use the value set in the 
+; Leaving this value empty will cause PHP to use the value set in the
 ; variables_order directive. It does not mean it will leave the super globals
 ; array REQUEST empty.
 ; Default Value: None
@@ -777,7 +777,7 @@ default_mimetype = "text/html"
 
 ; PHP's default character set is set to empty.
 ; http://www.php.net/manual/en/ini.core.php#ini.default-charset
-;default_charset = "iso-8859-1"
+default_charset = "<%= node['php']['default_charset'] %>"
 
 ; Always populate the $HTTP_RAW_POST_DATA variable. PHP's default behavior is
 ; to disable this feature.
@@ -953,7 +953,7 @@ default_socket_timeout = 60
 [Date]
 ; Defines the default timezone used by the date functions
 ; http://www.php.net/manual/en/datetime.configuration.php#ini.date.timezone
-;date.timezone =
+date.timezone = "<%= node['php']['timezone'] %>"
 
 ; http://www.php.net/manual/en/datetime.configuration.php#ini.date.default-latitude
 ;date.default_latitude = 31.7667
@@ -980,7 +980,7 @@ default_socket_timeout = 60
 ;iconv.output_encoding = ISO-8859-1
 
 [intl]
-;intl.default_locale = 
+;intl.default_locale =
 
 [sqlite]
 ; http://www.php.net/manual/en/sqlite.configuration.php#ini.sqlite.assoc-case
@@ -994,9 +994,9 @@ default_socket_timeout = 60
 ; http://www.php.net/manual/en/pcre.configuration.php#ini.pcre.backtrack-limit
 ;pcre.backtrack_limit=100000
 
-;PCRE library recursion limit. 
-;Please note that if you set this value to a high number you may consume all 
-;the available process stack and eventually crash PHP (due to reaching the 
+;PCRE library recursion limit.
+;Please note that if you set this value to a high number you may consume all
+;the available process stack and eventually crash PHP (due to reaching the
 ;stack size limit imposed by the Operating System).
 ; http://www.php.net/manual/en/pcre.configuration.php#ini.pcre.recursion-limit
 ;pcre.recursion_limit=100000
@@ -1365,7 +1365,7 @@ session.cookie_domain =
 
 ; Whether or not to add the httpOnly flag to the cookie, which makes it inaccessible to browser scripting languages such as JavaScript.
 ; http://www.php.net/manual/en/session.configuration.php#ini.session.cookie-httponly
-session.cookie_httponly = 
+session.cookie_httponly =
 
 ; Handler used to serialize data.  php is the standard serializer of PHP.
 ; http://www.php.net/manual/en/session.configuration.php#ini.session.serialize-handler
@@ -1384,7 +1384,7 @@ session.serialize_handler = php
 session.gc_probability = 1
 
 ; Defines the probability that the 'garbage collection' process is started on every
-; session initialization. The probability is calculated by using the following equation: 
+; session initialization. The probability is calculated by using the following equation:
 ; gc_probability/gc_divisor. Where session.gc_probability is the numerator and
 ; session.gc_divisor is the denominator in the equation. Setting this value to 1
 ; when the session.gc_divisor value is 100 will give you approximately a 1% chance
@@ -1475,7 +1475,7 @@ session.cache_expire = 180
 session.use_trans_sid = 0
 
 ; Select a hash function for use in generating session ids.
-; Possible Values 
+; Possible Values
 ;   0  (MD5 128 bits)
 ;   1  (SHA-1 160 bits)
 ; http://www.php.net/manual/en/session.configuration.php#ini.session.hash-function
@@ -1551,7 +1551,7 @@ mssql.secure_connection = Off
 ; FreeTDS defaults to 4096
 ;mssql.max_procs = -1
 
-; Specify client character set. 
+; Specify client character set.
 ; If empty or not set the client charset from freetds.comf is used
 ; This is only used when compiled with FreeTDS
 ;mssql.charset = "ISO-8859-1"
@@ -1707,7 +1707,7 @@ soap.wsdl_cache_enabled=1
 ; http://www.php.net/manual/en/soap.configuration.php#ini.soap.wsdl-cache-dir
 soap.wsdl_cache_dir="/tmp"
 
-; (time to live) Sets the number of second while cached file will be used 
+; (time to live) Sets the number of second while cached file will be used
 ; instead of original one.
 ; http://www.php.net/manual/en/soap.configuration.php#ini.soap.wsdl-cache-ttl
 soap.wsdl_cache_ttl=86400

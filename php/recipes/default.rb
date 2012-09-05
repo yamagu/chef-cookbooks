@@ -26,6 +26,7 @@ template "/etc/php.ini" do
   mode "644"
   owner "root"
   group "root"
+  notifies :restart, "service[httpd]"
 end
 
 include_recipe "yum::remi-disabled"
