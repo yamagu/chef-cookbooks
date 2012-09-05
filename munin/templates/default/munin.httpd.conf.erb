@@ -2,10 +2,19 @@
 Alias /munin    /var/www/html/munin
 
 <Directory /var/www/html/munin/>
+
+    AuthUserFile /etc/munin/munin-htpasswd
+    AuthName "Munin"
+    AuthType Basic
+    require valid-user
+
     Order deny,allow
     Deny from all
     <% node['munin']['allow_hosts'].each do |host| -%>
     Allow from <%= host %>
     <% end -%>
+
+    ExpiresActive On
+    ExpiresDefault M310
 </Directory>
 
