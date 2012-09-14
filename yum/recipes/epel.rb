@@ -35,7 +35,7 @@ template "/etc/yum.repos.d/epel.repo" do
   variables({
     :releasever => major,
     :priority => 10,
-    :enabled => 0
+    :enabled => 1
   })
 end
 
