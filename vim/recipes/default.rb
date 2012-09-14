@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+package "ctags"
 package "vim-enhanced" do
   action :install
 end
