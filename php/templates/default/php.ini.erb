@@ -517,7 +517,7 @@ memory_limit = <%= node['php']['memory_limit'] %>
 ; Development Value: E_ALL | E_STRICT
 ; Production Value: E_ALL & ~E_DEPRECATED
 ; http://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting
-error_reporting = <% node['php']['error_reporting'] %>
+error_reporting = <%= node['php']['error_reporting'] %>
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -534,7 +534,7 @@ error_reporting = <% node['php']['error_reporting'] %>
 ; Development Value: On
 ; Production Value: Off
 ; http://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors
-display_errors = <% node['php']['display_errors'] %>
+display_errors = <%= node['php']['display_errors'] %>
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those

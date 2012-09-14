@@ -1,0 +1,13 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+	DocumentRoot "<%= node['httpd']['vhost']['document_root'] %>"
+	ServerName <%= node['httpd']['vhost']['server_name'] %>
+	<Directory "<%= node['httpd']['vhost']['document_root'] %>">
+      Options FollowSymLinks
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    </Directory>
+</VirtualHost>
+
