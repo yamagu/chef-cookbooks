@@ -1,0 +1,10 @@
+{
+  "postfix": {
+    "myhostname": "mail.diline.jp",
+    "mydomain":   "diline.jp",
+    "myorigin":   "$mydomain",
+    "mynetworks": "127.0.0.0/8",
+    "inet_interfaces": "all"
+  },
+  "run_list": [ "recipe[postfix]" ]
+}

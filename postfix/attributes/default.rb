@@ -1,0 +1,9 @@
+default['postfix']['mail_type']  = "client"
+default['postfix']['myhostname'] = node['fqdn']
+default['postfix']['mydomain']   = node['domain']
+default['postfix']['myorigin']   = "$myhostname"
+default['postfix']['relayhost']  = ""
+default['postfix']['mail_relay_networks']        = "127.0.0.0/8"
+default['postfix']['relayhost_role']             = "relayhost"
+default['postfix']['multi_environment_relay'] = false
+default['postfix']['inet_interfaces'] = nil
