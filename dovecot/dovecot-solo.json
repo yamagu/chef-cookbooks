@@ -1,0 +1,5 @@
+{
+  "dovecot": {
+  },
+  "run_list": [ "recipe[dovecot]" ]
+}
