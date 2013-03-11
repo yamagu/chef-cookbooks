@@ -1,0 +1,6 @@
+{
+  "yum": {
+    "releasever": "6"
+  },
+  "run_list": [ "recipe[yum]" ]
+}
