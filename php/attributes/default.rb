@@ -11,7 +11,6 @@ end
 
 default['php']['version'] = ""
 default['php']['packages'] = %w{ php php-devel php-cli php-common php-mbstring php-process php-devel php-curl php-xml php-mcrypt php-mysql php-pdo php-gd }
-
 default['php']['memory_limit'] = "128M"
 
 if node['php']['env'] == "dev"

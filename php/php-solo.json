@@ -1,0 +1,7 @@
+{
+  "php": {
+    "memory_limit": "521M"
+    // ,"env": "dev"
+  },
+  "run_list": [ "recipe[httpd]","recipe[php]" ]
+}

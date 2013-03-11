@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "yum::remi-enabled"
+#include_recipe "yum::remi-enabled"
 
 %w{ mysql-server mysql mysql-devel }.each do |name|
   cmd = "yum install -y --enablerepo=remi #{name}"
@@ -22,7 +22,7 @@ include_recipe "yum::remi-enabled"
   end
 end
 
-include_recipe "yum::remi-disabled"
+# include_recipe "yum::remi-disabled"
 
 template "/etc/my.cnf" do
   source "my.cnf.erb"
