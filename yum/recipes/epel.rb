@@ -10,8 +10,8 @@ major = node['yum']['releasever'].to_i
 
 if major == 5
   epel_version = '5-4'
-elsif major ==
-  epel_version = '6-7'
+elsif major == 6
+  epel_version = '6-8'
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/epel-release-#{epel_version}.rpm" do
@@ -35,7 +35,7 @@ template "/etc/yum.repos.d/epel.repo" do
   variables({
     :releasever => major,
     :priority => 10,
-    :enabled => 1
+    :enabled => 0
   })
 end
 
