@@ -1,0 +1,7 @@
+{
+  "vim": {
+    // .vimrcを設置するユーザ名の配列
+    "users": ["vagrant", "root"]
+  },
+  "run_list": [ "recipe[vim]" ]
+}
