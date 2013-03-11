@@ -281,7 +281,7 @@ ServerAdmin root@localhost
 # You will have to access it by its address anyway, and this will make
 # redirections work in a sensible way.
 #
-ServerName www.example.com:80
+ServerName <%= node['httpd']['server_name'] %>:80
 
 #
 # UseCanonicalName: Determines how Apache constructs self-referencing
@@ -297,7 +297,7 @@ UseCanonicalName Off
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/html"
+DocumentRoot "<%= node['httpd']['docment_root'] %>"
 
 #
 # Each directory to which Apache has access can be configured with respect
@@ -489,7 +489,8 @@ HostnameLookups Off
 # logged here.  If you *do* define an error logfile for a <VirtualHost>
 # container, that host's errors will be logged there and not here.
 #
-ErrorLog logs/error_log
+#ErrorLog logs/error_log
+ErrorLog "|/usr/sbin/rotatelogs /var/log/httpd/error_log.%Y%m%d 86400 540"
 
 #
 # LogLevel: Control the number of messages logged to the error_log.
@@ -531,7 +532,8 @@ LogFormat "%{User-agent}i" agent
 # For a single logfile with access, agent, and referer information
 # (Combined Logfile Format), use the following directive:
 #
-CustomLog logs/access_log combined
+#CustomLog logs/access_log combined
+CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/access_log.%Y%m%d 86400 540" combined
 
 #
 # Optionally add a line containing the server version and virtual host
