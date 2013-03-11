@@ -1,0 +1,6 @@
+{
+  "httpd": {
+    "server_name": "diline.jp"
+  },
+  "run_list": [ "recipe[httpd]" ]
+}
