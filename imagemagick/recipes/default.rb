@@ -6,3 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+package "ImageMagick"
+package "ImageMagick-devel"
+
