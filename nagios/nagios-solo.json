@@ -1,7 +1,7 @@
 {
   "nagios": {
     "admin_user": "nagiosadmin",
-    "admin_pass": "password",
+    "admin_pass": "k6cuEDLt",
     "allow_hosts": ["all"]
   },
   "run_list": [ "recipe[nagios]" ]

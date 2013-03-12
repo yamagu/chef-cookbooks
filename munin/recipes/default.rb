@@ -7,8 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "munin"
+bash "install_munin" do
+  user "root"
+  code "yum --enablerepo=epel install -y munin"
+end
 
+
+bash "set_account" do
+  user "root"
+  code "htpasswd -cb /etc/munin/munin-htpasswd #{node['munin']['admin_user']} #{node['munin']['admin_password']}"
+end
 
 template "/etc/munin/munin.conf" do
   source "munin.conf.erb"

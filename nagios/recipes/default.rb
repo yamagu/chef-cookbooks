@@ -12,11 +12,24 @@ bash "install_nagios" do
   code "yum --enablerepo=epel install -y nagios nagios-plugins-nrpe"
 end
 
+service "nagios" do
+  action [ :enable, :start ]
+end
+
 bash "set_account" do
   user "root"
   code "htpasswd -cb /etc/nagios/passwd #{node['nagios']['admin_user']} #{node['nagios']['admin_password']}"
 end
 
-service "nagios" do
-  action [ :enable, :start ]
+
+template "/etc/httpd/conf.d/nagios.conf" do
+  source "nagios.conf.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[httpd]"
+end
+
+service "httpd" do
+  action [ :restart ]
 end
