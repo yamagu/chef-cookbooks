@@ -1,0 +1,5 @@
+{
+  "nrpe": {
+  },
+  "run_list": [ "recipe[nrpe]" ]
+}

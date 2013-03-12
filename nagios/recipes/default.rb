@@ -21,6 +21,21 @@ bash "set_account" do
   code "htpasswd -cb /etc/nagios/passwd #{node['nagios']['admin_user']} #{node['nagios']['admin_password']}"
 end
 
+template "/etc/nagios/nagios.cfg" do
+  source "nagios.cfg.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[nagios]"
+end
+
+template "/etc/nagios/objects/contacts.cfg" do
+  source "contacts.cfg.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[nagios]"
+end
 
 template "/etc/httpd/conf.d/nagios.conf" do
   source "nagios.conf.erb"
@@ -30,6 +45,4 @@ template "/etc/httpd/conf.d/nagios.conf" do
   notifies :restart, "service[httpd]"
 end
 
-service "httpd" do
-  action [ :restart ]
-end
+service "httpd"
