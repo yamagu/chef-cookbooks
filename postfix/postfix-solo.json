@@ -1,7 +1,7 @@
 {
   "postfix": {
-    "myhostname": "mail.diline.jp",
-    "mydomain":   "diline.jp",
+    "myhostname": "mail.example.com",
+    "mydomain":   "example.com",
     "myorigin":   "$mydomain",
     "mynetworks": "127.0.0.0/8",
     "inet_interfaces": "all"

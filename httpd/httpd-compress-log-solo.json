@@ -1,0 +1,9 @@
+{
+  "httpd": {
+    "compress_log": {
+      "script_dir": "/usr/local/app",
+      "log_dir": "/var/log/httpd"
+    }
+  },
+  "run_list": [ "recipe[httpd::compress_log]" ]
+}

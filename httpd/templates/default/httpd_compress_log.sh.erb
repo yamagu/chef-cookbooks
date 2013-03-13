@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# 昨日日付のログを圧縮
+
+if [ $# -eq 1 ]; then
+	DATE=$1
+else
+	DATE=`date -d '1 day ago' +%Y%m%d`
+fi
+
+LOG_DIR=<%= node['httpd']['compress_log']['log_dir'] %>
+LOG_FILE=${LOG_DIR}/*.${DATE}
+
+gzip ${LOG_FILE}

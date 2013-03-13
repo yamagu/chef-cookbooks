@@ -1,6 +1,7 @@
 {
   "httpd": {
-    "server_name": "diline.jp"
+    "server_name":   "www.example.com",
+    "document_root": "/var/www/html"
   },
   "run_list": [ "recipe[httpd]" ]
 }

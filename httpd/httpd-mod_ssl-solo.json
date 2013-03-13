@@ -1,0 +1,13 @@
+{
+  "httpd": {
+    "mod_ssl": {
+      "server_name":   "www.example.com",
+      "document_root": "/var/www/html",
+      "certificate_file":       "",
+      "certificate_key_file":   "",
+      "certificate_chain_file": "",
+      "ca_certificate_file":    ""
+    }
+  },
+  "run_list": [ "recipe[httpd::mod_ssl]" ]
+}
