@@ -9,6 +9,5 @@ else
 fi
 
 LOG_DIR=<%= node['httpd']['compress_log']['log_dir'] %>
-LOG_FILE=${LOG_DIR}/*.${DATE}
 
-gzip ${LOG_FILE}
+find ${LOG_DIR}/ -type f -name "*.${DATE}" -exec gzip {} \;
