@@ -223,7 +223,7 @@ command[check_mem]=/usr/lib64/nagios/plugins/check_mem.pl -u -w 80 -c 90
 command[check_http]=/usr/lib64/nagios/plugins/check_http -H <%= node['nrpe']['check_http']["host"] %>
 <% end -%>
 <% if node['nrpe']['check_ssl_cert']["enable"] -%>
-command[check_ssl_cert]=/usr/lib64/nagios/plugins/check_http -I <%= node['nrpe']['check_http']["host"] %> -H <%= node['nrpe']['check_http']["domain"] %> -C <%= node['nrpe']['check_http']["day"] %>
+command[check_ssl_cert]=/usr/lib64/nagios/plugins/check_http -I <%= node['nrpe']['check_ssl_cert']["host"] %> -H <%= node['nrpe']['check_ssl_cert']["domain"] %> -C <%= node['nrpe']['check_ssl_cert']["day"] %>
 <% end -%>
 
 <% if node['nrpe']['check_mysql']["enable"] -%>
