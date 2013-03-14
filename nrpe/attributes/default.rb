@@ -8,6 +8,7 @@ node["filesystem"].each do |key, value|
   end
 end
 default['nrpe']['check_disk'] = {"enable" => true , "filesystems" => filesystems }
+default['nrpe']['check_disk_busy'] = {"enable" => true , "filesystems" => filesystems }
 
 default['nrpe']['check_load'] = {
   "enable" => true ,
@@ -15,9 +16,13 @@ default['nrpe']['check_load'] = {
   "c" => "#{node['cpu']['total'] * 5},#{node['cpu']['total'] * 4},#{node['cpu']['total'] * 2}"
 }
 
-default['nrpe']['check_cpu'] = {"enable" => true }
-default['nrpe']['check_mem'] = {"enable" => true }
-default['nrpe']['check_http'] = {"enable" => true, "host" => "localhost" }
-default['nrpe']['check_smtp'] = {"enable" => true, "host" => "localhost" }
-default['nrpe']['check_pop'] = {"enable" => true, "host" => "localhost" }
+default['nrpe']['check_cpu']   = {"enable" => true }
+default['nrpe']['check_mem']   = {"enable" => true }
+default['nrpe']['check_http']  = {"enable" => true, "host" => "localhost" }
+default['nrpe']['check_ssl_cert']  = {"enable" => false, "host" => "example.com", "day" => 30 }
+default['nrpe']['check_smtp']  = {"enable" => true, "host" => "localhost", "port" => 25 }
+default['nrpe']['check_pop']   = {"enable" => true, "host" => "localhost", "port" => 110 }
+default['nrpe']['check_ssh']   = {"enable" => true, "host" => "localhost", "port" => 22 }
+default['nrpe']['check_mysql'] = {"enable" => true, "host" => "localhost", "port" => 3306, "user" => "monitor" }
+default['nrpe']['check_ntp_peer'] = {"enable" => true, "host" => "ntp.nict.jp" }
 

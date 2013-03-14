@@ -1,0 +1,105 @@
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+
+<% node["nagios"]["roles"].each do |role| -%>
+# role <%= role["name"] %>
+define service{
+        use                             generic-service
+        name                            <%= role["name"] %>
+        host_name                       <%= role["members"].join(', ') %>
+        register                        0
+        }
+<% end -%>
+
+<% node["nagios"]["check_disk_sufix"].each do |sufix| -%>
+# DISK<%= sufix %> Service definition
+define service{
+        use                             all-server
+		service_description             DISK<%= sufix %>
+		check_command                   check_nrpe!check_disk<%= sufix %>
+        }
+<% end -%>
+
+# LOAD_AVR Service definition
+define service{
+        use                             all-server
+        service_description             LOAD_AVR
+        check_command                   check_nrpe!check_load
+        }
+
+# SWAP Service definition
+define service{
+        use                             all-server
+        service_description             SWAP
+        check_command                   check_nrpe!check_swap
+        }
+
+# ZOMBIE_PROCS Service definition
+define service{
+        use                             all-server
+        service_description             ZOMBIE_PROCS
+        check_command                   check_nrpe!check_zombie_procs
+        }
+
+# TOTAL_PROCS Service definition
+define service{
+        use                             all-server
+        service_description             TOTAL_PROCS
+        check_command                   check_nrpe!check_total_procs
+        }
+
+# CPU Service definition
+define service{
+        use                             all-server
+        service_description             CPU
+        check_command                   check_nrpe!check_cpu
+        }
+
+# MEM_USE Service definition
+define service{
+        use                             all-server
+        service_description             MEM_USE
+        check_command                   check_nrpe!check_mem
+        }
+
+# HTTP Service definition
+define service{
+        use                             app-server
+        service_description             HTTP
+        check_command                   check_nrpe!check_http
+        }
+
+# MYSQL Service definition
+define service{
+        use                             db-server
+        service_description             MYSQL
+        check_command                   check_nrpe!check_mysql
+        }
+
+# MYSQL Replication Service definition
+#define service{
+#        use                             generic-service
+#        host_name                       db_slave
+#        service_description             MYSQL_SLAVE
+#        check_command                   check_nrpe!check_mysql_slave
+#        }
+
+# SMTP Service definition
+define service{
+        use                             smtp-server
+        service_description             SMTP
+        check_command                   check_smtp
+        }
+
+# POP Service definition
+define service{
+        use                             smtp-server
+        service_description             POP
+        check_command                   check_pop
+        }

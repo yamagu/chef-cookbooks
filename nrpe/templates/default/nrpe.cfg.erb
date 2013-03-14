@@ -197,8 +197,6 @@ include_dir=/etc/nrpe.d/
 
 # The following examples use hardcoded command arguments...
 
-command[check_users]=/usr/lib64/nagios/plugins/check_users -w 5 -c 10
-
 <% if node['nrpe']['check_load']["enable"] -%>
 command[check_load]=/usr/lib64/nagios/plugins/check_load -w <%= node['nrpe']['check_load']["w"] %> -c <%= node['nrpe']['check_load']["c"] %>
 <% end -%>
@@ -209,9 +207,11 @@ command[check_disk<%= i +1 %>]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10
   <% end -%>
 <% end -%>
 
+command[check_users]=/usr/lib64/nagios/plugins/check_users -w 5 -c 10
 command[check_zombie_procs]=/usr/lib64/nagios/plugins/check_procs -w 5 -c 10 -s Z
 command[check_total_procs]=/usr/lib64/nagios/plugins/check_procs -w 250 -c 300
 command[check_swap]=/usr/lib64/nagios/plugins/check_swap -w 60% -c 50%
+
 <% if node['nrpe']['check_cpu']["enable"] -%>
 command[check_cpu]=/usr/lib64/nagios/plugins/check_cpu_stats.sh -w 70,40,30 -c 90,60,40
 <% end -%>
@@ -222,7 +222,29 @@ command[check_mem]=/usr/lib64/nagios/plugins/check_mem.pl -u -w 80 -c 90
 <% if node['nrpe']['check_http']["enable"] -%>
 command[check_http]=/usr/lib64/nagios/plugins/check_http -H <%= node['nrpe']['check_http']["host"] %>
 <% end -%>
+<% if node['nrpe']['check_ssl_cert']["enable"] -%>
+command[check_ssl_cert]=/usr/lib64/nagios/plugins/check_http -I <%= node['nrpe']['check_http']["host"] %> -H <%= node['nrpe']['check_http']["domain"] %> -C <%= node['nrpe']['check_http']["day"] %>
+<% end -%>
 
+<% if node['nrpe']['check_mysql']["enable"] -%>
+command[check_mysql]=/usr/lib64/nagios/plugins/check_mysql -H <%= node['nrpe']['check_mysql']["host"] %> -u <%= node['nrpe']['check_mysql']["user"] %> -P <%= node['nrpe']['check_mysql']["port"] %>
+<% end -%>
+
+<% if node['nrpe']['check_smtp']["enable"] -%>
+command[check_smtp]=/usr/lib64/nagios/plugins/check_smtp -H <%= node['nrpe']['check_smtp']["host"] %> -p <%= node['nrpe']['check_smtp']["port"] %>
+<% end -%>
+
+<% if node['nrpe']['check_pop']["enable"] -%>
+command[check_pop]=/usr/lib64/nagios/plugins/check_pop -H <%= node['nrpe']['check_pop']["host"] %> -p <%= node['nrpe']['check_pop']["port"] %>
+<% end -%>
+
+<% if node['nrpe']['check_ssh']["enable"] -%>
+command[check_ssh]=/usr/lib64/nagios/plugins/check_ssh -H <%= node['nrpe']['check_ssh']["host_name"] %> -p <%= node['nrpe']['check_ssh']["port"] %>
+<% end -%>
+
+<% if node['nrpe']['check_ntp_peer']["enable"] -%>
+command[check_ntp_peer]=/usr/lib64/nagios/plugins/check_ntp_peer -H <%= node['nrpe']['check_ntp_peer']["host_name"] %>
+<% end -%>
 
 # The following examples allow user-supplied arguments and can
 # only be used if the NRPE daemon was compiled with support for

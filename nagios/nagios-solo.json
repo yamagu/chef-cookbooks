@@ -1,9 +1,11 @@
 {
   "nagios": {
-    "admin_user": "nagiosadmin",
-    "admin_pass": "k6cuEDLt",
-    "allow_hosts": ["all"],
-    "contacts": [{"name": "nagiosadmin", "email": "nagios@localhost"},{"name": "nagiosadmin", "email": "nagios@localhost"}]
+    "notification_prefix": "",
+    "admin_user":     "nagiosadmin",
+    "admin_password": "password",
+    "allow_hosts":    ["all"],
+    "contacts": [{"name": "nagiosadmin", "email": "nagios@localhost"}
+    ]
   },
   "run_list": [ "recipe[nagios]" ]
 }

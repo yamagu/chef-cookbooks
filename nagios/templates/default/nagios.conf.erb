@@ -9,7 +9,9 @@
 ScriptAlias /nagios/cgi-bin/ "/usr/lib64/nagios/cgi-bin/"
 
 <Directory "/usr/lib64/nagios/cgi-bin/">
-#  SSLRequireSSL
+   <% if node["nagios"]["ssl_require"] %>
+   SSLRequireSSL
+   <% end -%>
    Options ExecCGI
    AllowOverride None
    Order deny,allow
@@ -26,7 +28,9 @@ ScriptAlias /nagios/cgi-bin/ "/usr/lib64/nagios/cgi-bin/"
 Alias /nagios "/usr/share/nagios/html"
 
 <Directory "/usr/share/nagios/html">
-#  SSLRequireSSL
+   <% if node["nagios"]["ssl_require"] %>
+   SSLRequireSSL
+   <% end -%>
    Options None
    AllowOverride None
    Order deny,allow

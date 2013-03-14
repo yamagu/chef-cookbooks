@@ -9,7 +9,7 @@
 
 bash "install_nrpe" do
   user "root"
-  code "yum --enablerepo=epel install -y nagios-nrpe nagios-plugins-all"
+  code "yum --enablerepo=epel --skip-broken install -y nagios-nrpe nagios-plugins-all"
 end
 
 bash "install_nrpe_dependency" do

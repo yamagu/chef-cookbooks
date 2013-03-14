@@ -1,0 +1,20 @@
+###############################################################################
+###############################################################################
+#
+# HOST GROUP DEFINITION
+#
+###############################################################################
+###############################################################################
+
+# Define an optional hostgroup for Linux machines
+
+<% node["nagios"]["hostgroups"].each do |hostgroup| -%>
+define hostgroup{
+    ; The name of the hostgroup
+    hostgroup_name  <%= hostgroup["hostgroup_name"] %>
+    ; Long name of the group
+    alias           <%= hostgroup["alias"] %>
+    ; Comma separated list of hosts that belong to this group
+    members         <%= hostgroup["members"].join(', ') %>
+}
+<% end -%>
