@@ -21,4 +21,8 @@ default['nagios']['roles'] = [
 ]
 
 default['nagios']['check_disk_sufix'] = [""]
-
+if node[:platform] == "amazon"
+  default['nagios']['yumopt'] = ""
+else
+  default['nagios']['yumopt'] = "--enablerepo=epel"
+end

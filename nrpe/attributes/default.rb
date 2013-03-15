@@ -1,9 +1,16 @@
+if node[:platform] == "amazon"
+  default['nrpe']['yumopt'] = ""
+else
+  default['nrpe']['yumopt'] = "--enablerepo=epel"
+end
+
+
 default['nrpe']['allowed_hosts'] = "127.0.0.1"
 default['nrpe']['dont_blame_nrpe'] = 1
 
 filesystems = []
 node["filesystem"].each do |key, value|
-  if value["percent_used"]
+  if value["percent_used"] && key.index("/") == 0
     filesystems.push(key)
   end
 end

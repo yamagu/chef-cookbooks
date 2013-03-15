@@ -7,9 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
 bash "install_nagios" do
   user "root"
-  code "yum --enablerepo=epel install -y nagios nagios-plugins-nrpe"
+  code "yum #{node['nagios']['yumopt']} install -y nagios nagios-plugins-nrpe"
 end
 
 
