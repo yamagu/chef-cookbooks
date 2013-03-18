@@ -1,5 +1,13 @@
 default[:httpd][:server_name] = "www.example.com"
 default[:httpd][:document_root] = "/var/www/html"
+default[:httpd][:allow_override] = "None"
+default[:httpd][:auth][:enabled] = false
+default[:httpd][:auth][:name] = "Authentication Required"
+default[:httpd][:auth][:type] = "BASIC"
+default[:httpd][:auth][:user] = "user"
+default[:httpd][:auth][:password] = ""
+default[:httpd][:auth][:user_file] = ""
+default[:httpd][:satisfy] = "all"
 
 default[:httpd][:mod_ssl][:server_name]            = "www.example.com"
 default[:httpd][:mod_ssl][:document_root]          = "/var/www/html"

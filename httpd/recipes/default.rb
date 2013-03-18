@@ -22,6 +22,12 @@ file "/var/www/error/noindex.html" do
   backup false
 end
 
+if node['httpd']['auth']['enabled']
+  bash "set_account" do
+    user "root"
+    code "htpasswd -cb #{node['httpd']['auth']['user_file']} #{node['httpd']['auth']['user']} #{node['httpd']['auth']['password']}"
+  end
+end
 service "httpd" do
   action [ :enable, :start ]
 end

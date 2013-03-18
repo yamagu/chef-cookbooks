@@ -1,7 +1,17 @@
 {
   "httpd": {
     "server_name":   "www.example.com",
-    "document_root": "/var/www/html"
+    "document_root": "/var/www/html",
+    "allow_override": "None",
+    "auth": {
+      "enabled": false,
+      "type": "BASIC",
+      "user_file": "",
+      "user":     "",
+      "password": ""
+    },
+    "allow_hosts": ["localhost"],
+    "satisfy": "all"
   },
   "run_list": [ "recipe[httpd]" ]
 }

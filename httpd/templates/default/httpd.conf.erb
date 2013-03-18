@@ -348,9 +348,20 @@ DocumentRoot "<%= node['httpd']['document_root'] %>"
 #
 # Controls who can get stuff from this server.
 #
-    Order allow,deny
-    Allow from all
+    Order deny,allow
+    Deny from all
 
+    <% node['httpd']['allow_hosts'].each do |host| -%>
+    Allow from <%= host %>
+    <% end -%>
+
+    <% if node["httpd"]["auth"]["enabled"] %>
+    AuthName "Authentication Required"
+    AuthType Basic
+    AuthUserFile <%= node["httpd"]["auth"]["user_file"] %>
+    Require valid-user
+    <% end -%>
+    Satisfy <%= node["httpd"]["satisfy"] %>
 </Directory>
 
 #
