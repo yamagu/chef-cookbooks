@@ -7,22 +7,24 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#include_recipe "yum::remi-enabled"
+%w{ mysql-server mysql mysql-devel }.each do |pkg_name|
+  #cmd = "yum install -y --enablerepo=remi #{name}"
 
-%w{ mysql-server mysql mysql-devel }.each do |name|
-  cmd = "yum install -y --enablerepo=remi #{name}"
-
-  if node['mysql-server']['version'].length > 0
-    cmd = "#{cmd}-#{node['mysql-server']['version']}"
+  package pkg_name do
+    version node['mysql-server']['version']
+    options node['mysql-server']['options']
+    action :install
   end
 
-  bash "install_mysql" do
-    user "root"
-    code cmd
-  end
+  #if node['mysql-server']['version'].length > 0
+  #  cmd = "#{cmd}-#{node['mysql-server']['version']}"
+  #end
+
+  # bash "install_mysql" do
+  #  user "root"
+  #  code cmd
+  #end
 end
-
-# include_recipe "yum::remi-disabled"
 
 template "/etc/my.cnf" do
   source "my.cnf.erb"

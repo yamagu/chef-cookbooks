@@ -1,4 +1,5 @@
-default['mysql-server']['version'] = ""
+default['mysql-server']['version'] = nil
+default['mysql-server']['options'] = "--enablerepo=remi"
 
 default['mysql-server']['datadir'] = "/var/lib/mysql"
 default['mysql-server']['socket'] = "/var/lib/mysql/mysql.sock"
