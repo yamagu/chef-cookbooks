@@ -1,3 +1,9 @@
 {
-  "run_list": [ "recipe[rvm]" ]
+  "rvm": {
+    "users": [{"name": "user", "version": "1.9.3"}]
+  },
+  "run_list": [
+    "rvm::default",
+    "rvm::ruby"
+    ]
 }
