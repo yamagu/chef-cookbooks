@@ -6,8 +6,14 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "yum-plugin-fastestmirror"
-package "yum-plugin-priorities"
+
+if node["yum"]["releasever"] == 6
+  package "yum-plugin-fastestmirror"
+  package "yum-plugin-priorities"
+else
+  package "yum-fastestmirror"
+  package "yum-priorities"
+end
 
 
 case node[:platform]
