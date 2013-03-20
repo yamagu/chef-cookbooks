@@ -1,17 +1,11 @@
 
-link "/etc/munin/plugins/apache_accesses" do
-    to "/usr/share/munin/plugins/apache_accesses"
+node['munin-node']['apache']['plugins'].each do |plugin_name|
+  link "/etc/munin/plugins/#{plugin_name}" do
+    to "/usr/share/munin/plugins/#{plugin_name}"
+  end
 end
-
-link "/etc/munin/plugins/apache_processes" do
-    to "/usr/share/munin/plugins/apache_processes"
-end
-
-link "/etc/munin/plugins/apache_volume" do
-    to "/usr/share/munin/plugins/apache_volume"
-end
-
 
 service "munin-node" do
+  supports :restart => true
   action :restart
 end

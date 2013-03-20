@@ -2,6 +2,9 @@
 Alias /munin    /var/www/html/munin
 
 <Directory /var/www/html/munin/>
+    <% if node["munin"]["ssl_require"] %>
+    SSLRequireSSL
+    <% end -%>
 
     AuthUserFile /etc/munin/munin-htpasswd
     AuthName "Munin"

@@ -7,11 +7,15 @@
 # All rights reserved - Do Not Redistribute
 #
 
-bash "install_munin" do
-  user "root"
-  code "yum --enablerepo=epel install -y munin"
+package "munin" do
+  version node['munin']['version']
+  options node['munin']['options']
+  action :install
 end
 
+service "httpd" do
+  supports :restart => true
+end
 
 bash "set_account" do
   user "root"
@@ -32,3 +36,4 @@ template "/etc/httpd/conf.d/munin.conf" do
   group "root"
   notifies :restart, "service[httpd]"
 end
+

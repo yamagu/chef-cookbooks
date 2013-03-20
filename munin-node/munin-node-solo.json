@@ -1,0 +1,14 @@
+{
+  "munin-node": {
+    "mysql": {
+      "mysqlopts": "-u**** -p****",
+      "mysqladmin": "/usr/bin/mysqladmin"
+    }
+  },
+  "run_list": [
+    "recipe[munin-node::default]",
+    "recipe[munin-node::apache]",
+    "recipe[munin-node::contrib]",
+    "recipe[munin-node::mysql]"
+    ]
+}
