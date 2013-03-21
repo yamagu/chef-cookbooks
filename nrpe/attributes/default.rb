@@ -30,6 +30,6 @@ default['nrpe']['check_ssl_cert']  = {"enable" => false, "host" => "example.com"
 default['nrpe']['check_smtp']  = {"enable" => true, "host" => "localhost", "port" => 25 }
 default['nrpe']['check_pop']   = {"enable" => true, "host" => "localhost", "port" => 110 }
 default['nrpe']['check_ssh']   = {"enable" => true, "host" => "localhost", "port" => 22 }
-default['nrpe']['check_mysql'] = {"enable" => true, "host" => "localhost", "port" => 3306, "user" => "monitor" }
+default['nrpe']['check_mysql'] = {"enable" => true, "host" => "localhost", "port" => 3306, "user" => "monitor", "password" => "password" }
 default['nrpe']['check_ntp_peer'] = {"enable" => true, "host" => "ntp.nict.jp" }
 

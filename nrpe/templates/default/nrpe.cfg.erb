@@ -227,7 +227,7 @@ command[check_ssl_cert]=/usr/lib64/nagios/plugins/check_http -I <%= node['nrpe']
 <% end -%>
 
 <% if node['nrpe']['check_mysql']["enable"] -%>
-command[check_mysql]=/usr/lib64/nagios/plugins/check_mysql -H <%= node['nrpe']['check_mysql']["host"] %> -u <%= node['nrpe']['check_mysql']["user"] %> -P <%= node['nrpe']['check_mysql']["port"] %>
+	command[check_mysql]=/usr/lib64/nagios/plugins/check_mysql -H <%= node['nrpe']['check_mysql']["host"] %> -u <%= node['nrpe']['check_mysql']["user"] %> -P <%= node['nrpe']['check_mysql']["port"] %> -p <%= node['nrpe']['check_mysql']["password"] %>
 <% end -%>
 
 <% if node['nrpe']['check_smtp']["enable"] -%>
