@@ -1,8 +1,15 @@
 {
   "mysql-server": {
-    "max_connections": 500
+    "max_connections": 500,
+    "root_password": "password"
     // ,"version": "5.5.27-1.el6.remi"
     // ,"innodb_buffer_pool_size" : "100M"
   },
-  "run_list": ["mysql-server"]
+  "run_list": [
+    "mysql-server::default",
+    "mysql-server::ruby-mysql",
+    "mysql-server::secure_installation",
+//    "mysql-server::databases",
+//    "mysql-server::privileges"
+  ]
 }
