@@ -28,6 +28,7 @@ if node['httpd']['auth']['enabled']
     code "htpasswd -cb #{node['httpd']['auth']['user_file']} #{node['httpd']['auth']['user']} #{node['httpd']['auth']['password']}"
   end
 end
+
 service "httpd" do
   action [ :enable, :start ]
 end

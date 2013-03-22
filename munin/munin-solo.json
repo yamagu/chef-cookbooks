@@ -1,9 +1,9 @@
 {
   "munin": {
     "admin_user": "muninadmin",
-    "admin_pass": "3bvzuyYD",
+    "admin_password": "password",
     "allow_hosts": ["all"],
-    "nodes": [{"host": "localhost", "address": "localhost"}]
+    "nodes": [{"host": "localhost", "address": "127.0.0.1"}]
   },
-  "run_list": [ "recipe[httpd]", "recipe[munin]" ]
+  "run_list": [ "recipe[munin]" ]
 }
