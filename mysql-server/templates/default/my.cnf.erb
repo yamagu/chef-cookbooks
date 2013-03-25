@@ -83,6 +83,9 @@ server_id = <%= node['mysql-server']['server_id'] %>
 # report_host=hostname
 # read_only = 1
 
+<% if node['mysql-server']['local-infile'] -%>
+local-infile=1
+<% end -%>
 
 [mysqld_safe]
 log-error=/var/log/mysqld.log
@@ -95,4 +98,7 @@ max_allowed_packet = 16M
 [mysql]
 no-auto-rehash
 default-character-set = utf8
+<% if node['mysql-server']['local-infile'] -%>
+local-infile=1
+<% end -%>
 

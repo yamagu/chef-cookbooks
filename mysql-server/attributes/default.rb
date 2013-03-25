@@ -13,6 +13,7 @@ memory_mb = memory_kb / 1024
 default['mysql-server']['innodb_buffer_pool_size'] = (memory_mb * 0.7).truncate.to_s + "M"
 
 default['mysql-server']['innodb_log_files_in_group'] = "2"
+default['mysql-server']['local-infile'] = false
 
 default['mysql-server']['databases'] = []
 default['mysql-server']['default_priv_types'] = [
