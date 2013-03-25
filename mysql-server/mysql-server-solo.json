@@ -2,14 +2,17 @@
   "mysql-server": {
     "max_connections": 500,
     "root_password": "password"
-    // ,"version": "5.5.27-1.el6.remi"
-    // ,"innodb_buffer_pool_size" : "100M"
+    "databases": ["my_db"],
+    "privileges": [
+      {"role": "admin", "username": "dbadmin", "password": "password"},
+      {"role": "user", "username": "dbuser", "password": "password", "db_name": "my_db", "priv_types": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE TEMPORARY TABLES"] }
+    ]
   },
   "run_list": [
     "mysql-server::default",
     "mysql-server::ruby-mysql",
     "mysql-server::secure_installation",
-//    "mysql-server::databases",
-//    "mysql-server::privileges"
+    "mysql-server::databases",
+    "mysql-server::privileges"
   ]
 }
