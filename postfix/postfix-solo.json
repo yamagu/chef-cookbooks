@@ -4,7 +4,24 @@
     "mydomain":   "example.com",
     "myorigin":   "$mydomain",
     "mynetworks": "127.0.0.0/8",
-    "inet_interfaces": "all"
+    "inet_interfaces": "all",
+    "virtual_mailbox": {
+      "enabled": false,
+      "virtual_mailbox_base": "/usr/local/vmail",
+      "virtual_mailbox_domains": "example.com",
+      "virtual_mailbox_maps": "hash:/etc/postfix/vmailbox",
+      "virtual_uid": 5000,
+      "virtual_gid": 5000,
+      "virtual_mailbox_users": ["support", "info"]
+
+    },
+    "virtual_alias_maps": {
+      "file": "hash:/etc/postfix/virtual",
+      "entry": {
+        "support@diline.jp": "support@example.com",
+        "info@diline.jp": "info@example.com"
+      }
+    }
   },
   "run_list": [ "recipe[postfix]" ]
 }

@@ -1,0 +1,3 @@
+<% node['postfix']['virtual_mailbox']['virtual_mailbox_users'].each do |user| %>
+<%= user %>@<%= node['postfix']['virtual_mailbox']['virtual_mailbox_domains'] %>	<%= node['postfix']['virtual_mailbox']['virtual_mailbox_domains'] %>/<%= user %>/Maildir/
+<% end unless node['postfix']['virtual_mailbox']['virtual_mailbox_users'].nil? %>
