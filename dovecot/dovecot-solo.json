@@ -3,6 +3,7 @@
     "passwd-file": {
       "enabled": true,
       "path": "/etc/dovecot.passwd",
+      "disable_plaintext_auth": "yes",
       "mechanisms": ["cram-md5", "plain"],
       "virtual_mailbox_base": "/usr/local/vmail",
       "domain": "example.com",

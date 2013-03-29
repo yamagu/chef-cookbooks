@@ -8,6 +8,7 @@
 #
 package "cyrus-sasl"
 package "cyrus-sasl-lib"
+package "cyrus-sasl-md5"
 
 
 template "/etc/sasl2/smtpd.conf" do

@@ -22,7 +22,10 @@
         "info@example.com": "info@example.com"
       }
     },
-    "smtp_auth": { "enabled": false }
+    "smtp_auth": {
+      "enabled": false,
+      "smtpd_sasl_security_options": ["noanonymous","noplaintext"]
+    }
   },
   "run_list": [ "recipe[postfix]" ]
 }

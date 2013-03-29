@@ -162,7 +162,11 @@ inet_protocols = ipv4
 # See also below, section "REJECTING MAIL FOR UNKNOWN LOCAL USERS".
 #
 #mydestination = $myhostname, localhost.$mydomain, localhost
+<% if node['postfix']['virtual_mailbox']['enabled'] -%>
+mydestination = $myhostname, localhost.$mydomain, localhost
+<% else %>
 mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+<% end -%>
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
 
@@ -689,7 +693,7 @@ readme_directory = /usr/share/doc/postfix-2.6.6/README_FILES
 smtpd_sasl_auth_enable = yes
 broken_sasl_auth_clients = yes
 smtpd_sasl_local_domain = $mydomain
-smtpd_sasl_security_options = noanonymous
+smtpd_sasl_security_options = <%= node['postfix']['smtp_auth']['smtpd_sasl_security_options'].join(' ') %>
 smtpd_recipient_restrictions = permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination
 <% end -%>
 

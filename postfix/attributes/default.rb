@@ -18,5 +18,8 @@ default['postfix']['virtual_alias_maps'] = {
   "file" => "hash:/etc/postfix/virtual",
   "entry" => {}
 }
-default['postfix']['smtp_auth'] = { "enabled" => false }
+default['postfix']['smtp_auth'] = {
+  "enabled" => false,
+  "smtpd_sasl_security_options" => ["noanonymous"]
+}
 default['postfix']['submission'] = { "enabled" => false }
