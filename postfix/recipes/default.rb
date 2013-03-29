@@ -65,6 +65,20 @@ if node['postfix']['virtual_mailbox']['enabled']
 end
 
 
+if node['postfix']['smtp_auth']['enabled']
+  execute "chown sasldb2" do
+    command "chown postfix:postfix /etc/sasldb2"
+  end
+end
+
+template "/etc/postfix/master.cf" do
+  source "master.cf.erb"
+  owner "root"
+  group 0
+  mode 00644
+  notifies :restart, "service[postfix]"
+end
+
 template "/etc/postfix/main.cf" do
   source "main.cf.erb"
   owner "root"

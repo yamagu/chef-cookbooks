@@ -18,10 +18,11 @@
     "virtual_alias_maps": {
       "file": "hash:/etc/postfix/virtual",
       "entry": {
-        "support@diline.jp": "support@example.com",
-        "info@diline.jp": "info@example.com"
+        "support@example.com": "support@example.com",
+        "info@example.com": "info@example.com"
       }
-    }
+    },
+    "smtp_auth": { "enabled": false }
   },
   "run_list": [ "recipe[postfix]" ]
 }

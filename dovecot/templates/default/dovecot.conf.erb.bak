@@ -1,0 +1,27 @@
+protocol imap {
+}
+
+protocol pop3 {
+}
+
+# default_mail_env = maildir:~/Maildir
+<% if node['dovecot']['passwd-file']['enabled'] -%>
+auth default {
+  mechanisms = <%= node['dovecot']['passwd-file']['mechanisms'].join(' ') %>
+
+  passdb passwd-file {
+    # Path for passwd-file
+	args = <%= node['dovecot']['passwd-file']['path'] %>
+  }
+
+  userdb passwd-file {
+    # Path for passwd-file
+	args = <%= node['dovecot']['passwd-file']['path'] %>
+  }
+  user = root
+}
+
+disable_plaintext_auth = no
+<% end -%>
+log_path = /var/log/dovecot-log
+info_log_path = /var/log/dovecot-log

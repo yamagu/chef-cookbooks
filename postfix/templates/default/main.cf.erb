@@ -116,7 +116,7 @@ myorigin = <%= node['postfix']['myorigin'] %>
 inet_interfaces = <%= node['postfix']['inet_interfaces'] || 'all' %>
 
 # Enable IPv4, and IPv6 if supported
-inet_protocols = all
+inet_protocols = ipv4
 
 # The proxy_interfaces parameter specifies the network interface
 # addresses that this mail system receives mail on by way of a
@@ -683,3 +683,16 @@ sample_directory = /usr/share/doc/postfix-2.6.6/samples
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/share/doc/postfix-2.6.6/README_FILES
+
+<% if node['postfix']['smtp_auth']['enabled'] -%>
+# smtp認証
+smtpd_sasl_auth_enable = yes
+broken_sasl_auth_clients = yes
+smtpd_sasl_local_domain = $mydomain
+smtpd_sasl_security_options = noanonymous
+smtpd_recipient_restrictions = permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination
+<% end -%>
+
+# VRFYやEXPNコマンドを無効
+disable_vrfy_command = yes
+

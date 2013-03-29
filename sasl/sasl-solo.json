@@ -1,0 +1,10 @@
+{
+  "sasl": {
+    "pwcheck_method": "auxprop",
+    "mech_list": [],
+    "users": [
+      {"domain": "diline.jp", "name": "support", "password": "Ee5Dcgpy"}
+    ]
+  },
+  "run_list": [ "recipe[sasl::default]" ]
+}
