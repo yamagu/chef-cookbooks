@@ -1,7 +1,7 @@
 
-Alias /munin    /var/www/html/munin
+Alias /munin    <%= node['munin']['htmldir'] %>
 
-<Directory /var/www/html/munin/>
+<Directory <%= node['munin']['htmldir'] %>/>
     <% if node["munin"]["ssl_require"] %>
     SSLRequireSSL
     <% end -%>

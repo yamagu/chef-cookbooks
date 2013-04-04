@@ -5,3 +5,4 @@ default['munin']['admin_user'] = "muninadmin"
 default['munin']['admin_password'] = "password"
 default['munin']['allow_hosts'] = "all"
 default['munin']['nodes'] = [{"host" => "localhost", "address" => "127.0.0.1"}]
+default['munin']['htmldir'] = "/var/www/html/munin"

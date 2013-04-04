@@ -22,6 +22,12 @@ bash "set_account" do
   code "htpasswd -cb /etc/munin/munin-htpasswd #{node['munin']['admin_user']} #{node['munin']['admin_password']}"
 end
 
+bash "set_htmldir" do
+  user "root"
+  code "mv /var/www/html/munin #{node['munin']['htmldir']}"
+  only_if "test /var/www/html/munin != #{node['munin']['htmldir']} && test -d /var/www/html/munin && test ! -d #{node['munin']['htmldir']}"
+end
+
 template "/etc/munin/munin.conf" do
   source "munin.conf.erb"
   mode "644"
