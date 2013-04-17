@@ -1,5 +1,18 @@
 {
   "dovecot": {
+    "passwd-file": {
+      "enabled": true,
+      "path": "/etc/dovecot.passwd",
+      "disable_plaintext_auth": "yes",
+      "mechanisms": ["cram-md5", "plain"],
+      "virtual_mailbox_base": "/usr/local/vmail",
+      "domain": "example.com",
+      "virtual_uid": 5000,
+      "virtual_gid": 5000,
+      "users": [
+        {"name": "support", "password": "password", "mechanism": "cram-md5"}
+        ]
+    }
   },
   "run_list": [ "recipe[dovecot]" ]
 }

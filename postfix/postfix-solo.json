@@ -4,7 +4,28 @@
     "mydomain":   "example.com",
     "myorigin":   "$mydomain",
     "mynetworks": "127.0.0.0/8",
-    "inet_interfaces": "all"
+    "inet_interfaces": "all",
+    "virtual_mailbox": {
+      "enabled": false,
+      "virtual_mailbox_base": "/usr/local/vmail",
+      "virtual_mailbox_domains": "example.com",
+      "virtual_mailbox_maps": "hash:/etc/postfix/vmailbox",
+      "virtual_uid": 5000,
+      "virtual_gid": 5000,
+      "virtual_mailbox_users": ["support", "info"]
+
+    },
+    "virtual_alias_maps": {
+      "file": "hash:/etc/postfix/virtual",
+      "entry": {
+        "support@example.com": "support@example.com",
+        "info@example.com": "info@example.com"
+      }
+    },
+    "smtp_auth": {
+      "enabled": false,
+      "smtpd_sasl_security_options": ["noanonymous","noplaintext"]
+    }
   },
   "run_list": [ "recipe[postfix]" ]
 }

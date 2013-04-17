@@ -1,0 +1,3 @@
+<% @users.each do |user| -%>
+<%= user['name'] %>@<%= node['dovecot']['passwd-file']['domain'] %>:<%= user['password'] %>:<%= node['dovecot']['passwd-file']['virtual_gid'] %>:<%= node['dovecot']['passwd-file']['virtual_uid'] %>::<%= node['dovecot']['passwd-file']['virtual_mailbox_base'] %>/<%= node['dovecot']['passwd-file']['domain'] %>/<%= user['name'] %>
+<% end -%>

@@ -1,0 +1,4 @@
+pwcheck_method: <%= node['sasl']['pwcheck_method'] %>
+<% if node['sasl']['mech_list'].size > 0 -%>
+mech_list: <%= node['sasl']['mech_list'].join(' ') %>
+<% end -%>
