@@ -1,0 +1,26 @@
+upstream rails-server {
+    server <%= node['nginx']['rails-unicorn']['address'] %>:<%= node['nginx']['rails-unicorn']['port'] %>;
+}
+
+server {
+    listen  <%= node['nginx']['rails-unicorn']['listen'] %>;
+    server_name     <%= node['nginx']['rails-unicorn']['server_name'] %>;
+
+    root <%= node['nginx']['rails-unicorn']['root'] %>;
+    error_log <%= node['nginx']['rails-unicorn']['error_log'] %>;
+
+    location ~* ^/assets {
+            expires max;
+            add_header Cache-Control public;
+            break;
+    }
+
+    try_files /system/maintenance.html $uri $uri/index.html $uri.html @unicorn;
+
+    location @unicorn {
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_pass http://rails-server;
+    }
+}

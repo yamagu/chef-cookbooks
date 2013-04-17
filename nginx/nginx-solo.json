@@ -1,5 +1,16 @@
 {
   "nginx": {
+    "rails-unicorn": {
+      "listen": "80",
+      "address": "127.0.0.1",
+      "port": "8080",
+      "server_name": "app.example.com",
+      "root": "/path/to/app/current/public",
+      "error_log": "/path/to/app/current/log/error.log"
+    }
   },
-  "run_list": [ "recipe[nginx]" ]
+  "run_list": [
+    "recipe[nginx::default]",
+    "recipe[nginx::rails-unicorn]"
+  ]
 }

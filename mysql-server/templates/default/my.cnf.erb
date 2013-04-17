@@ -29,7 +29,7 @@ symbolic-links=0
 default-storage-engine= InnoDB
 
 character_set_server  = utf8
-max_allowed_packet    = 16M
+max_allowed_packet    = <%= node['mysql-server']['max_allowed_packet'] %>
 
 max_connections       = <%= node['mysql-server']['max_connections'] %>
 open_files_limit      = 3000
@@ -93,7 +93,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 [mysqldump]
 quick
-max_allowed_packet = 16M
+max_allowed_packet = <%= node['mysql-server']['max_allowed_packet'] %>
 
 [mysql]
 no-auto-rehash

@@ -1,6 +1,7 @@
 {
   "mysql-server": {
     "max_connections": 500,
+    "max_allowed_packet": "16M",
     "root_password": "password"
     "databases": ["my_db"],
     "privileges": [

@@ -6,6 +6,7 @@ default['mysql-server']['socket'] = "/var/lib/mysql/mysql.sock"
 
 default['mysql-server']['server_id'] = "1"
 default['mysql-server']['max_connections'] = "200"
+default['mysql-server']['max_allowed_packet'] = "16M"
 
 # innodb_buffer_pool_size
 memory_kb = node[:memory][:total].scan(/[0-9]+/)[0].to_i

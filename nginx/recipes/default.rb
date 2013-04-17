@@ -36,5 +36,5 @@ template "/etc/nginx/nginx.conf" do
   mode 0644
   owner "root"
   group "root"
-  notifies :restart, "service[nginx]"
+  notifies :reload, "service[nginx]"
 end
