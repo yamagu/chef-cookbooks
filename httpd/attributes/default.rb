@@ -1,6 +1,8 @@
 default[:httpd][:server_name] = "www.example.com"
+default[:httpd][:service_enable] = true
 default[:httpd][:document_root] = "/var/www/html"
 default[:httpd][:allow_override] = "None"
+default[:httpd][:allow_hosts] = ["All"]
 default[:httpd][:auth][:enabled] = false
 default[:httpd][:auth][:name] = "Authentication Required"
 default[:httpd][:auth][:type] = "BASIC"

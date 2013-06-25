@@ -14,7 +14,9 @@ template "/etc/httpd/conf/httpd.conf" do
   mode 0644
   owner "root"
   group "root"
-  notifies :restart, "service[httpd]"
+  if node['httpd']['service_enable']
+    notifies :restart, "service[httpd]"
+  end
 end
 
 
@@ -29,7 +31,14 @@ if node['httpd']['auth']['enabled']
   end
 end
 
-service "httpd" do
-  action [ :enable, :start ]
+if node['httpd']['service_enable']
+  service "httpd" do
+    action [ :enable, :start ]
+  end
+else
+  service "httpd" do
+    action [ :disable, :stop ]
+  end
+
 end
 

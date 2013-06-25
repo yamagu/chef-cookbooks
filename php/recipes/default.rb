@@ -23,14 +23,16 @@ end
 
 bash "install_php" do
   user "root"
-  code "yum install -y --enablerepo=remi #{packages.join(' ')}"
+  code "yum install -y --enablerepo=remi,epel #{packages.join(' ')}"
 end
 template "/etc/php.ini" do
   source "php.ini.erb"
   mode "644"
   owner "root"
   group "root"
-  notifies :restart, "service[httpd]"
+  if node['httpd']['service_enable']
+    notifies :restart, "service[httpd]"
+  end
 end
 
 #include_recipe "yum::remi-disabled"
