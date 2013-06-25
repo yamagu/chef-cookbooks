@@ -6,9 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "yum::epel"
 
-package "redis"
+package "redis" do
+  options node['redis']['version']
+  options node['redis']['options']
+  action :install
+end
 
 service "redis" do
   action [ :enable, :start ]

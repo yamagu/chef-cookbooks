@@ -9,11 +9,13 @@ server {
     root <%= node['nginx']['rails-unicorn']['root'] %>;
     error_log <%= node['nginx']['rails-unicorn']['error_log'] %>;
 
+    <% if node['nginx']['rails-unicorn']['serve_assets'] -%>
     location ~* ^/assets {
             expires max;
             add_header Cache-Control public;
             break;
     }
+    <% end -%>
 
     try_files /system/maintenance.html $uri $uri/index.html $uri.html @unicorn;
 
